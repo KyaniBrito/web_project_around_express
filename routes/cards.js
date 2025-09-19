@@ -6,7 +6,6 @@ const router = express.Router();
 
 const cardsPath = path.join(__dirname, "../data/cards.json");
 
-// GET /cards → retorna todos os cards
 router.get("/", (req, res) => {
   fs.readFile(cardsPath, "utf8", (err, data) => {
     if (err) {

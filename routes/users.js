@@ -6,7 +6,6 @@ const router = express.Router();
 
 const usersPath = path.join(__dirname, "../data/users.json");
 
-// GET /users → retorna todos os usuários
 router.get("/", (req, res) => {
   fs.readFile(usersPath, "utf8", (err, data) => {
     if (err) {
@@ -19,7 +18,6 @@ router.get("/", (req, res) => {
   });
 });
 
-// GET /users/:id → retorna um usuário específico
 router.get("/:id", (req, res) => {
   fs.readFile(usersPath, "utf8", (err, data) => {
     if (err) {

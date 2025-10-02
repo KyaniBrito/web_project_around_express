@@ -1,19 +1,18 @@
 const express = require("express");
-const fs = require("fs");
-const path = require("path");
-
 const router = express.Router();
 
-const cardsPath = path.join(__dirname, "../data/cards.json");
+const {
+  getCards,
+  createCard,
+  deleteCard,
+  likeCard,
+  dislikeCard,
+} = require("../controllers/cards");
 
-router.get("/", (req, res) => {
-  fs.readFile(cardsPath, "utf8", (err, data) => {
-    if (err) {
-      return res.status(500).json({ message: "Erro ao ler arquivo de cards" });
-    }
-    const cards = JSON.parse(data);
-    return res.json(cards);
-  });
-});
+router.get("/", getCards); // GET /cards
+router.post("/", createCard); // POST /cards
+router.delete("/:cardId", deleteCard); // DELETE /cards/:cardId
+router.put("/:cardId/likes", likeCard); // PUT /cards/:cardId/likes
+router.delete("/:cardId/likes", dislikeCard); // DELETE /cards/:cardId/likes
 
 module.exports = router;

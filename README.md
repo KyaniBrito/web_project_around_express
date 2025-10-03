@@ -21,6 +21,7 @@ Projeto desenvolvido como parte do curso de Desenvolvimento Web da TripleTen - S
 - MongoDB + Mongoose
 - JavaScript ES6+
 - Modularização de código com Express Router
+- Documentação interativa da API com Swagger (swagger-jsdoc + swagger-ui-express)
 - Tratamento de erros padronizado (400, 404, 500)
 - Validação de dados com Mongoose e express-validator
 - Uso de Express middleware para simular autenticação temporária
@@ -45,5 +46,12 @@ Projeto desenvolvido como parte do curso de Desenvolvimento Web da TripleTen - S
 - [x] DELETE /cards/:cardId → remove um card pelo ID
 - [x] PUT /cards/:cardId/likes → adiciona um like do usuário ao card
 - [x] DELETE /cards/:cardId/likes → remove um like do usuário do card
+
+## Documentação da API
+
+A API está documentada com **Swagger**, permitindo explorar e testar os endpoints diretamente pelo navegador.
+
+- Acesse a documentação em: `http://localhost:3000/api-docs`
+- Lá você pode visualizar todos os endpoints disponíveis, seus parâmetros, exemplos de requisição e resposta.
 
 Desenvolvido por **Kyani Brito** durante o curso de Desenvolvimento Web na [TripleTen](https://tripleten.com/).

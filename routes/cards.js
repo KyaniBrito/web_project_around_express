@@ -9,10 +9,110 @@ const {
   dislikeCard,
 } = require("../controllers/cards");
 
-router.get("/", getCards); // GET /cards
-router.post("/", createCard); // POST /cards
-router.delete("/:cardId", deleteCard); // DELETE /cards/:cardId
-router.put("/:cardId/likes", likeCard); // PUT /cards/:cardId/likes
-router.delete("/:cardId/likes", dislikeCard); // DELETE /cards/:cardId/likes
+/**
+ * @swagger
+ * /cards:
+ *   get:
+ *     summary: Retorna todos os cards
+ *     tags: [Cards]
+ *     responses:
+ *       200:
+ *         description: Lista de cards
+ */
+
+router.get("/", getCards);
+
+/**
+ * @swagger
+ * /cards:
+ *   post:
+ *     summary: Cria um novo card
+ *     tags: [Cards]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - name
+ *               - link
+ *             properties:
+ *               name:
+ *                 type: string
+ *               link:
+ *                 type: string
+ *     responses:
+ *       201:
+ *         description: Card criado com sucesso
+ */
+
+router.post("/", createCard);
+
+/**
+ * @swagger
+ * /cards/{cardId}:
+ *   delete:
+ *     summary: Remove um card pelo ID
+ *     tags: [Cards]
+ *     parameters:
+ *       - in: path
+ *         name: cardId
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: ID do card
+ *     responses:
+ *       200:
+ *         description: Card removido com sucesso
+ *       404:
+ *         description: Card não encontrado
+ */
+
+router.delete("/:cardId", deleteCard);
+
+/**
+ * @swagger
+ * /cards/{cardId}/likes:
+ *   put:
+ *     summary: Adiciona um like a um card
+ *     tags: [Cards]
+ *     parameters:
+ *       - in: path
+ *         name: cardId
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: ID do card
+ *     responses:
+ *       200:
+ *         description: Like adicionado com sucesso
+ *       404:
+ *         description: Card não encontrado
+ */
+
+router.put("/:cardId/likes", likeCard);
+
+/**
+ * @swagger
+ * /cards/{cardId}/likes:
+ *   delete:
+ *     summary: Remove um like de um card
+ *     tags: [Cards]
+ *     parameters:
+ *       - in: path
+ *         name: cardId
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: ID do card
+ *     responses:
+ *       200:
+ *         description: Like removido com sucesso
+ *       404:
+ *         description: Card não encontrado
+ */
+
+router.delete("/:cardId/likes", dislikeCard);
 
 module.exports = router;

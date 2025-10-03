@@ -1,9 +1,33 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const swaggerUi = require("swagger-ui-express");
+const swaggerJsdoc = require("swagger-jsdoc");
 const usersRouter = require("./routes/users");
 const cardsRouter = require("./routes/cards");
 
 const app = express();
+
+const options = {
+  definition: {
+    openapi: "3.0.0",
+    info: {
+      title: "Web Project Around Express API",
+      version: "1.0.0",
+      description: "API RESTful para gerenciamento de usuários e cards",
+    },
+    servers: [
+      {
+        url: "http://localhost:3000",
+      },
+    ],
+  },
+  apis: ["./routes/*.js"],
+};
+
+const swaggerSpec = swaggerJsdoc(options);
+
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
 mongoose
   .connect("mongodb://localhost:27017/aroundb", {
     useNewUrlParser: true,
